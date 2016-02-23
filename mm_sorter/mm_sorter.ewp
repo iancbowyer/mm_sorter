@@ -419,7 +419,7 @@
         </option>
         <option>
           <name>CCOptLevel</name>
-          <state>1</state>
+          <state>0</state>
         </option>
         <option>
           <name>CCOptStrategy</name>
@@ -428,7 +428,7 @@
         </option>
         <option>
           <name>CCOptLevelSlave</name>
-          <state>1</state>
+          <state>0</state>
         </option>
         <option>
           <name>CInput</name>
@@ -805,7 +805,7 @@
         </option>
         <option>
           <name>XclFile</name>
-          <state>$TOOLKIT_DIR$\config\linker\lnk430FR4133.xcl</state>
+          <state>$TOOLKIT_DIR$\config\linker\lnk430fr4133.xcl</state>
         </option>
         <option>
           <name>XclFileSlave</name>
@@ -933,7 +933,7 @@
         </option>
         <option>
           <name>ExtraOutputFile</name>
-          <state>OutOfBox_MSP430FR4133.a43</state>
+          <state>mm_sorter.a43</state>
         </option>
         <option>
           <name>ExtraOutputFormat</name>
@@ -2429,10 +2429,10 @@
     <name>$PROJ_DIR$\sensor.h</name>
   </file>
   <file>
-    <name>$PROJ_DIR$\seperator.c</name>
+    <name>$PROJ_DIR$\servoController.c</name>
   </file>
   <file>
-    <name>$PROJ_DIR$\seperator.h</name>
+    <name>$PROJ_DIR$\servoController.h</name>
   </file>
   <file>
     <name>$PROJ_DIR$\sorter.c</name>

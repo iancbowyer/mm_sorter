@@ -2,8 +2,8 @@
 #define RGB_ENUM_H
 enum RGB
 {
-  red,
-  green,
-  blue
+  r,
+  g,
+  b
 };
 #endif

@@ -2,12 +2,12 @@
 #include <driverlib.h>
 
 #include "sensor.h"
-#include "seperator.h"
+#include "servoController.h"
 #include "sorter.h"
 #include "interface.h"
 
 void init();
-void displayNumberOnLCD(char identifier, int16_t displayNum);
+bool isFinished();
 
 bool SW1_interruptFlag_ = false;
 bool SW2_interruptFlag_ = false;
@@ -20,25 +20,54 @@ int main(void)
     // to activate previously configured port settings
     PMM_unlockLPM5();
     
+    bool running = false;
     init();
     
     __enable_interrupt();
     
     struct colour detectedColour;
-
+    
     while(1)
     {
           if (SW2_interruptFlag_)
           {
             SW2_interruptFlag_ = false;
-            detectedColour = runSensor();
-            updateRGBValues_Debug(detectedColour);
+            running = true;
+            
           }
           else if (SW1_interruptFlag_)
           {
             SW1_interruptFlag_ = false;
             showNextRGBValue_Debug();
+            updateRGBValues_Debug(detectedColour);            
+          }
+          
+          if (running)
+          {
+            //wait for mm to drop
+            __delay_cycles(2000000);
+            
+            //move seperator to colour sensor
+            changeDutyCycle(0x39);
+            
+            //run sensor
+            detectedColour = runSensor();
+            
+            //run sorter
+            
+            //move seperator to exit
+            changeDutyCycle(0x60);
+            
+            //wzit for mm to drop
+            __delay_cycles(1000000);
+            
+            //move seperator to entrance
+            changeDutyCycle(0x20);
+            
+            //update ui values
             updateRGBValues_Debug(detectedColour);
+            
+            running = !isFinished();
           }
           
           __delay_cycles(10000);
@@ -49,6 +78,7 @@ void init()
 {
   sensorInit();
   InterfaceInit();
+  seperatorInit();
   
   // Configure button S1 interrupt
   GPIO_selectInterruptEdge(GPIO_PORT_P1, GPIO_PIN3, GPIO_LOW_TO_HIGH_TRANSITION);
@@ -65,6 +95,13 @@ void init()
   GPIO_clearInterrupt(GPIO_PORT_P1, GPIO_PIN4);
 
   GPIO_enableInterrupt(GPIO_PORT_P1, GPIO_PIN4);
+}
+
+//returns true if finsihed and false if not
+bool isFinished()
+{
+  return true;
+  //todo detect if finished automatically
 }
 
 #pragma vector = PORT1_VECTOR

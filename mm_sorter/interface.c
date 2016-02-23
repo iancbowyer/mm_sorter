@@ -13,9 +13,9 @@ void InterfaceInit()
 
 void showNextRGBValue_Debug()
 {
-  if (colours == blue)
+  if (colours == b)
   {
-    colours = red;
+    colours = r;
   }
   else
   {
@@ -27,14 +27,14 @@ void updateRGBValues_Debug(struct colour detectedColour)
 {  
   switch(colours)
   {
-  case red:
-    displayNumberOnLCD('R', detectedColour.red);
+  case r: 
+    displayNumberOnLCD('R', detectedColour.red_value);
     break;
-  case green:
-    displayNumberOnLCD('G', detectedColour.green);
+  case g:
+    displayNumberOnLCD('G', detectedColour.green_value);
     break;
-  case blue:
-    displayNumberOnLCD('B', detectedColour.blue);
+  case b:
+    displayNumberOnLCD('B', detectedColour.blue_value);
     break;        
   }
 }

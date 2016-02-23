@@ -25,7 +25,7 @@ Reporting colour back to main
 
 //time to keep LED on for before reading from LDR
 //led warmup time + LDR settle time + buffer
-#define LED_DELAY 100000
+#define LED_DELAY 1000000
 
 int16_t getLDRVoltageForLED(uint8_t selectedPort, uint16_t selectedPins);
 void sensorInit();

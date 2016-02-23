@@ -21,13 +21,13 @@ struct colour runSensor()
   GPIO_setOutputLowOnPin(BLUE_LED_PORT, BLUE_LED_PIN);
   
   /*RED LED***********************************************************/
-  runResults.red = getLDRVoltageForLED(RED_LED_PORT, RED_LED_PIN);
+  runResults.red_value = getLDRVoltageForLED(RED_LED_PORT, RED_LED_PIN);
   
   /*GREEN LED********************************************************/
-  runResults.green = getLDRVoltageForLED(GREEN_LED_PORT, GREEN_LED_PIN);
+  runResults.green_value = getLDRVoltageForLED(GREEN_LED_PORT, GREEN_LED_PIN);
   
   /*BLUE LED*********************************************************/
-  runResults.blue = getLDRVoltageForLED(BLUE_LED_PORT,BLUE_LED_PIN);
+  runResults.blue_value = getLDRVoltageForLED(BLUE_LED_PORT,BLUE_LED_PIN);
   
   return runResults;
   
