@@ -23,6 +23,7 @@ int main(void)
     bool running = false;
     init();
     
+                                
     __enable_interrupt();
     
     struct colour detectedColour;
@@ -45,24 +46,32 @@ int main(void)
           if (running)
           {
             //wait for mm to drop
-            __delay_cycles(2000000);
+            //__delay_cycles(1000000);
             
             //move seperator to colour sensor
-            changeDutyCycle(0x39);
+            //changeServoADutyCycle(0x39);
+            
+            //wait for mm to enter detection chamber
+            //__delay_cycles(1000000);
             
             //run sensor
             detectedColour = runSensor();
             
             //run sorter
+            //changeServoBDutyCycle(0x40);
+            //__delay_cycles(1000000);
             
             //move seperator to exit
-            changeDutyCycle(0x60);
+            //changeServoADutyCycle(0x60);
             
             //wzit for mm to drop
-            __delay_cycles(1000000);
+            //__delay_cycles(1000000);
             
             //move seperator to entrance
-            changeDutyCycle(0x20);
+            //changeServoADutyCycle(0x20);
+            
+            //reset servo b
+            //changeServoBDutyCycle(0x20);
             
             //update ui values
             updateRGBValues_Debug(detectedColour);

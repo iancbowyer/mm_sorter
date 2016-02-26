@@ -3,6 +3,10 @@
 #include <msp430.h>
 #include <driverlib.h>
 
+
+
 void seperatorInit();
-void changeDutyCycle(int16_t pulseWidth);
+void changeServoADutyCycle(int16_t pulseWidth);
+void changeServoBDutyCycle(int16_t pulseWidth);
+void switchServo(bool servo);
 #endif

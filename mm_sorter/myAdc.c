@@ -19,7 +19,7 @@ __interrupt void ADC_ISR(void)
 void adcInitForSensor()
 {
   //configure pin 8.1
-  GPIO_setAsPeripheralModuleFunctionOutputPin(GPIO_PORT_P8, GPIO_PIN1, GPIO_PRIMARY_MODULE_FUNCTION);
+  GPIO_setAsPeripheralModuleFunctionOutputPin(GPIO_PORT_P1, GPIO_PIN5, GPIO_PRIMARY_MODULE_FUNCTION);
   
   //setup ADC to take value from 8.1 and convert to binary
   //converts one value then waits for next start instruction
@@ -27,7 +27,7 @@ void adcInitForSensor()
   ADC_init(__MSP430_BASEADDRESS_ADC__,ADC_SAMPLEHOLDSOURCE_SC,ADC_CLOCKSOURCE_ADCOSC,ADC_CLOCKDIVIDER_16);
   ADC_enable(__MSP430_BASEADDRESS_ADC__);
   ADC_setupSamplingTimer(__MSP430_BASEADDRESS_ADC__,ADC_CYCLEHOLD_16_CYCLES,ADC_MULTIPLESAMPLESDISABLE);
-  ADC_configureMemory(__MSP430_BASEADDRESS_ADC__,ADC_INPUT_A9,ADC_VREFPOS_AVCC,ADC_VREFNEG_AVSS);
+  ADC_configureMemory(__MSP430_BASEADDRESS_ADC__,ADC_INPUT_A5,ADC_VREFPOS_AVCC,ADC_VREFNEG_AVSS);
   ADC_enableInterrupt(__MSP430_BASEADDRESS_ADC__,ADC_COMPLETED_INTERRUPT);
 }
 
