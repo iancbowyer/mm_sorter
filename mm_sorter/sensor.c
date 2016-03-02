@@ -36,7 +36,9 @@ struct colour runSensor()
 int16_t getLDRVoltageForLED(uint8_t selectedPort, uint16_t selectedPins)
 {
   //enable desired pins to turn on LED
+  
   GPIO_setOutputHighOnPin(selectedPort, selectedPins);
+  
   
   //delay so LDR can settle
   __delay_cycles(LED_DELAY);
@@ -49,8 +51,11 @@ int16_t getLDRVoltageForLED(uint8_t selectedPort, uint16_t selectedPins)
   {
     __delay_cycles(1000);
   }
-  //disable red LED
+  //disable LED
+  
   GPIO_setOutputLowOnPin(selectedPort, selectedPins);
+  
+  
   int16_t temp = lastConversionValue();
   return temp;
 }

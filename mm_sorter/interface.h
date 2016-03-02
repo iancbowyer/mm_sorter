@@ -9,4 +9,5 @@
 void InterfaceInit();
 void showNextRGBValue_Debug();
 void updateRGBValues_Debug(struct colour detectedColour);
+void displayNumberOnLCD(char identifier, int16_t displayNum);
 #endif

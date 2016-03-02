@@ -1,4 +1,5 @@
 #include "myAdc.h"
+#include "interface.h"
 int16_t adcValue;
 bool adcFinished= false;
 
@@ -12,6 +13,8 @@ __interrupt void ADC_ISR(void)
         ADC_clearInterrupt(__MSP430_BASEADDRESS_ADC__,ADC_COMPLETED_INTERRUPT_FLAG);
         adcValue = ADC_getResults(__MSP430_BASEADDRESS_ADC__);
         adcFinished = true;
+        displayNumberOnLCD('a', adcValue);
+        ADC_startConversion(__MSP430_BASEADDRESS_ADC__,ADC_SINGLECHANNEL);
     break;
   }
 }

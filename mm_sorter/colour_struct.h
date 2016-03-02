@@ -12,14 +12,4 @@ struct colour
   int16_t green_value;
   int16_t blue_value;
 };
-
-enum mmColours
-{
-  red,
-  orange,
-  brown,
-  green,
-  yellow,
-  blue  
-};
 #endif

@@ -5,6 +5,9 @@
 #include "servoController.h"
 #include "sorter.h"
 #include "interface.h"
+#include "comparator.h"
+#include "mm_colour_enum.h"
+
 
 void init();
 bool isFinished();
@@ -27,9 +30,13 @@ int main(void)
     __enable_interrupt();
     
     struct colour detectedColour;
+    enum mmColours detectedMM;
+    
+    ADC_startConversion(__MSP430_BASEADDRESS_ADC__,ADC_SINGLECHANNEL);
     
     while(1)
-    {
+    {      
+          
           if (SW2_interruptFlag_)
           {
             SW2_interruptFlag_ = false;
@@ -45,38 +52,42 @@ int main(void)
           
           if (running)
           {
-            //wait for mm to drop
-            //__delay_cycles(1000000);
+           //wait for mm to drop
+           __delay_cycles(1000000);
             
-            //move seperator to colour sensor
-            //changeServoADutyCycle(0x39);
+           //move seperator to colour sensor
+           changeServoADutyCycle(0x39);
             
-            //wait for mm to enter detection chamber
-            //__delay_cycles(1000000);
+           //wait for mm to enter detection chamber
+           __delay_cycles(1000000);
             
-            //run sensor
-            detectedColour = runSensor();
+           //run sensor
+           detectedColour = runSensor();
+           
+           //compare sensor reading to calibration data
+           detectedMM = decideColour(detectedColour);
+             
+           //run sorter
+           moveSorter(detectedMM);
+           __delay_cycles(1000000);
             
-            //run sorter
-            //changeServoBDutyCycle(0x40);
-            //__delay_cycles(1000000);
+           //move seperator to exit
+           changeServoADutyCycle(0x60);
             
-            //move seperator to exit
-            //changeServoADutyCycle(0x60);
+           //wzit for mm to drop
+           __delay_cycles(1000000);
+           
+           //move seperator to entrance
+           changeServoADutyCycle(0x20);
             
-            //wzit for mm to drop
-            //__delay_cycles(1000000);
+           //reset servo b
+           changeServoBDutyCycle(0x20);
             
-            //move seperator to entrance
-            //changeServoADutyCycle(0x20);
+           //update ui values
+           updateRGBValues_Debug(detectedColour);
             
-            //reset servo b
-            //changeServoBDutyCycle(0x20);
             
-            //update ui values
-            updateRGBValues_Debug(detectedColour);
-            
-            running = !isFinished();
+           running = !isFinished();
           }
           
           __delay_cycles(10000);

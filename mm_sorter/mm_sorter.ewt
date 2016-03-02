@@ -2103,6 +2103,9 @@
     <name>$PROJ_DIR$\main.c</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\mm_colour_enum.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\myAdc.c</name>
   </file>
   <file>
