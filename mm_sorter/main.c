@@ -31,12 +31,26 @@ int main(void)
     
     struct colour detectedColour;
     enum mmColours detectedMM;
+    detectedMM = red;
     
     ADC_startConversion(__MSP430_BASEADDRESS_ADC__,ADC_SINGLECHANNEL);
     
     while(1)
-    {      
+    {    
+          if (detectedMM == blue)
+          {
+              detectedMM = red;
+            }
+            else
+            {
+              detectedMM += 1;
+          }
           
+          moveSorter(detectedMM);
+          __delay_cycles(50000);
+          changeServoBDutyCycle(0x20);
+          __delay_cycles(50000);
+          /*
           if (SW2_interruptFlag_)
           {
             SW2_interruptFlag_ = false;
@@ -47,50 +61,57 @@ int main(void)
           {
             SW1_interruptFlag_ = false;
             showNextRGBValue_Debug();
-            updateRGBValues_Debug(detectedColour);            
+            updateRGBValues_Debug(detectedColour);   
+            
+            
           }
           
           if (running)
           {
+            
            //wait for mm to drop
-           __delay_cycles(1000000);
+           //__delay_cycles(1000000);
             
            //move seperator to colour sensor
-           changeServoADutyCycle(0x39);
+           //changeServoADutyCycle(0x39);
             
            //wait for mm to enter detection chamber
-           __delay_cycles(1000000);
+           //__delay_cycles(1000000);
             
            //run sensor
-           detectedColour = runSensor();
+           //detectedColour = runSensor();
            
            //compare sensor reading to calibration data
-           detectedMM = decideColour(detectedColour);
+           //detectedMM = decideColour(detectedColour);
              
            //run sorter
+            
            moveSorter(detectedMM);
-           __delay_cycles(1000000);
+           //changeServoBDutyCycle(0x60);
+           __delay_cycles(50000);
             
            //move seperator to exit
-           changeServoADutyCycle(0x60);
+           //changeServoADutyCycle(0x60);
             
            //wzit for mm to drop
-           __delay_cycles(1000000);
+           //__delay_cycles(1000000);
            
            //move seperator to entrance
-           changeServoADutyCycle(0x20);
+           //changeServoADutyCycle(0x20);
             
            //reset servo b
            changeServoBDutyCycle(0x20);
             
+           //__delay_cycles(1000000);
            //update ui values
-           updateRGBValues_Debug(detectedColour);
-            
-            
+           //updateRGBValues_Debug(detectedColour);
            running = !isFinished();
+           
           }
           
-          __delay_cycles(10000);
+          //__delay_cycles(10000); 
+          */
+          
     }
 }
 

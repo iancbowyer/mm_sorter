@@ -8,17 +8,23 @@ void moveSorter(enum mmColours detectedMM)
   switch (detectedMM)
   {
   case red:
-    changeServoADutyCycle(0x60);
+    changeServoBDutyCycle(0x60);
+    break;
   case orange:
-    changeServoADutyCycle(0x60);
+    changeServoBDutyCycle(0x54);
+    break;
   case brown:
-    changeServoADutyCycle(0x60);
+    changeServoBDutyCycle(0x48);
+    break;
   case green:
-    changeServoADutyCycle(0x60);
+    changeServoBDutyCycle(0x42);
+    break;
   case yellow:
-    changeServoADutyCycle(0x60);
+    changeServoBDutyCycle(0x36);
+    break;
   case blue: 
-    changeServoADutyCycle(0x60);
+    changeServoBDutyCycle(0x30);
+    break;
   }  
   
   
