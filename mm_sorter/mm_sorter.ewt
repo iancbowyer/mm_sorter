@@ -2106,13 +2106,13 @@
     <name>$PROJ_DIR$\mm_colour_enum.h</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\mmCounts.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\myAdc.c</name>
   </file>
   <file>
     <name>$PROJ_DIR$\myAdc.h</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\rgb_enum.h</name>
   </file>
   <file>
     <name>$PROJ_DIR$\sensor.c</name>

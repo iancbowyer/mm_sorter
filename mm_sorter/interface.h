@@ -4,10 +4,12 @@
 #include <msp430.h>
 #include <driverlib.h>
 
+#include "hal_LCD.h"
 #include "colour_struct.h"
+#include "mmCounts.h"
 
 void InterfaceInit();
-void showNextRGBValue_Debug();
-void updateRGBValues_Debug(struct colour detectedColour);
-void displayNumberOnLCD(char identifier, int16_t displayNum);
+void showNextCount();
+void updateLCDWithCount(struct mmCount count);
+void displayNumberOnLCD(char identifier, char identifier2, int16_t displayNum);
 #endif

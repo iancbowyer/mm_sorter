@@ -4,6 +4,6 @@ enum RGB
 {
   r,
   g,
-  b
+  b 
 };
 #endif

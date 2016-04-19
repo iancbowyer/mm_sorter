@@ -72,4 +72,4 @@ void showChar(char, int);
 void clearLCD(void);
 
 
-#endif /* HAL_LCD_H_ */
+#endif

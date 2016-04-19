@@ -5,7 +5,7 @@
 
 
 
-void seperatorInit();
+void servoInit();
 void changeServoADutyCycle(int16_t pulseWidth);
 void changeServoBDutyCycle(int16_t pulseWidth);
 void switchServo(bool servo);
